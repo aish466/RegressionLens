@@ -10,6 +10,7 @@ import java.lang.Math;
  *
  * @author amahajan
  */
+ 
 public class Intersection {
     
     public void getPoint(double slope, double intercept, double lowerBoundX, double upperBoundX, double[] minPoint, double[] maxPoint){
