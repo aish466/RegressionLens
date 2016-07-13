@@ -7,7 +7,7 @@ package regressionlensv1;
 
 import java.lang.Math;
 /**
- *
+ * 
  * @author amahajan
  */
  
@@ -20,7 +20,7 @@ public class Intersection {
         maxPoint[1] = (slope * upperBoundX) + intercept;
     }
     
-    
+    //To check whether 2 line segments intersect
     public boolean linesIntersect(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4){
       // Return false if either of the lines have zero length
       if (x1 == x2 && y1 == y2 ||
@@ -124,6 +124,7 @@ public class Intersection {
       return a * d - b * c;
    }
    
+   // To get intersection of a quadratic curve and rectangle
     // quadratic equation : y = ax2 + bx + c
     // lines : x = x1, x2 ; y = y1, y2 
     public void getQuadraticCurveLineIntersection(double a, double b, double c, double x1, double x2, double y1, double y2, double[] xIntersectionPoints){
@@ -137,7 +138,6 @@ public class Intersection {
         
         //For x = x1
         y = a*x1*x1 + b*x1 + c;
-        System.out.println("y = " + y + "i = " + i);
         if((y > y1) && (y < y2)){
             xIntersectionPoints[i] = x1;
             if(i == 1)
@@ -147,7 +147,6 @@ public class Intersection {
         
         //For x = x2
         y = a*x2*x2 + b*x2 + c;
-        System.out.println("y = " + y + "i = " + i);
         if((y > y1) && (y < y2)){
             xIntersectionPoints[i] = x2;
             if(i == 1)
@@ -158,8 +157,6 @@ public class Intersection {
         //For y = y1
         // ax2 + bx + (c - y1) = 0
         discriminant = b*b - 4*a*(c - y1);
-        
-        System.out.println("D = " + discriminant + "i = " + i);
         
         if(discriminant > 0){
             xFirst = (-b + Math.sqrt(b*b - 4*a*(c-y1)))/(2 * a);
@@ -199,7 +196,6 @@ public class Intersection {
         // ay2 + by + (c - x2) = 0
         discriminant = b*b - 4*a*(c - y2);
         
-        System.out.println("D = " + discriminant + "i = " + i);
         if(discriminant > 0){
             xFirst = (-b + Math.sqrt(b*b - 4*a*(c-y2)))/(2 * a);
             if((xFirst > x1) && (xFirst < x2)){

@@ -138,8 +138,9 @@ public class RegressionLens extends JFrame {
         
         re = reTemp;
         
-        REXP coeff = new REXP(34, re.eval("c(1,2,4,8,16 )"));
-        System.out.println("Processed first RE Evaluation!!");
+        //Testing R connection
+        //REXP coeff = new REXP(34, re.eval("c(1,2,4,8,16 )"));
+        //System.out.println("Processed first RE Evaluation!!");
         
         this.setSize(1200,550);
         this.setLocationRelativeTo(null);
@@ -295,20 +296,6 @@ public class RegressionLens extends JFrame {
         jc.setMaximumSize(max); 
     }
     
-//    private void setMaxSize(JTextArea jc) {
-//        Dimension max = jc.getMaximumSize();
-//        Dimension pref = jc.getPreferredSize();
-//        max.height = pref.height;
-//        jc.setMaximumSize(max); 
-//    }
-//    
-//    private void setMaxSize(JScrollPane jc) {
-//        Dimension max = jc.getMaximumSize();
-//        Dimension pref = jc.getPreferredSize();
-//        max.height = pref.height;
-//        jc.setMaximumSize(max); 
-//    }
-    
     /**
      *
      * @param xData
@@ -324,8 +311,7 @@ public class RegressionLens extends JFrame {
         public void valueChanged(ListSelectionEvent e) {
             if (e.getValueIsAdjusting() == true){
                 if(!defListModel.isEmpty()){
-                System.out.println(regressionColors.getSelectedIndex());
-                
+                                    
                 int index = regressionColors.getSelectedIndex();
                 
                 //PRINT RECT COORD
@@ -675,8 +661,7 @@ public class RegressionLens extends JFrame {
             String s = "";
             String[] rEngStr = {};
             markerEnd = getPosition(e);
-            markerEndY = getPositionY(e);
-            System.out.println(markerEnd + " " + markerEndY);            
+            markerEndY = getPositionY(e);      
             textAreaRectangleCord.append("\nMarker end \nx = ");
             textAreaRectangleCord.append(Double.toString(markerEnd));
             textAreaRectangleCord.append("\ny = ");
@@ -696,7 +681,6 @@ public class RegressionLens extends JFrame {
                 //Find linear Regression
                 s = reg.getLinearRegression(xSelected, ySelected, re);
                 String[] coeff = s.split("\\s*,\\s*");
-                System.out.println("Coeffs are" + Arrays.toString(coeff));
                 double intercept = Double.parseDouble(coeff[0]);
                 double slope = Double.parseDouble(coeff[1]);
                 textAreaLinearRegression.setText("Intercept : ");
@@ -716,14 +700,11 @@ public class RegressionLens extends JFrame {
                 int j = 0;
                 do{ 
                     boolean b = lines.linesIntersect(minPoint[0], minPoint[1], maxPoint[0], maxPoint[1], markerStart, markerStartY, markerStart, markerEndY);
-                    System.out.println(b);
                     if(lines.linesIntersect(minPoint[0], minPoint[1], maxPoint[0], maxPoint[1], markerStart, markerStartY, markerStart, markerEndY)){                  
                         linearRegPointsStart = lines.getLineLineIntersection(minPoint[0], minPoint[1], maxPoint[0], maxPoint[1], markerStart, markerStartY, markerStart, markerEndY);
                         j++;
                     }
-                    b = lines.linesIntersect(minPoint[0], minPoint[1], maxPoint[0], maxPoint[1], markerStart, markerEndY, markerEnd, markerEndY);
-                    System.out.println(b);
-
+                    
                     if(lines.linesIntersect(minPoint[0], minPoint[1], maxPoint[0], maxPoint[1], markerStart, markerEndY, markerEnd, markerEndY)){
                         if(j == 0){
                             linearRegPointsStart = lines.getLineLineIntersection(minPoint[0], minPoint[1], maxPoint[0], maxPoint[1], markerStart, markerEndY, markerEnd, markerEndY);
@@ -734,8 +715,7 @@ public class RegressionLens extends JFrame {
                             break;
                         }
                     }
-                    b = lines.linesIntersect(minPoint[0], minPoint[1], maxPoint[0], maxPoint[1], markerEnd, markerEndY, markerEnd, markerStartY);
-                    System.out.println(b);
+                    
                     if(lines.linesIntersect(minPoint[0], minPoint[1], maxPoint[0], maxPoint[1], markerEnd, markerEndY, markerEnd, markerStartY)){
                         if(j == 0){
                             linearRegPointsStart = lines.getLineLineIntersection(minPoint[0], minPoint[1], maxPoint[0], maxPoint[1], markerEnd, markerEndY, markerEnd, markerStartY);
@@ -746,8 +726,7 @@ public class RegressionLens extends JFrame {
                             break;
                         }
                     }
-                    b = lines.linesIntersect(minPoint[0], minPoint[1], maxPoint[0], maxPoint[1], markerEnd, markerStartY, markerStart, markerStartY);
-                    System.out.println(b);
+                    
                     if(lines.linesIntersect(minPoint[0], minPoint[1], maxPoint[0], maxPoint[1], markerEnd, markerStartY, markerStart, markerStartY)){
                       linearRegPointsEnd = lines.getLineLineIntersection(minPoint[0], minPoint[1], maxPoint[0], maxPoint[1], markerEnd, markerStartY, markerStart, markerStartY);
                     }
@@ -770,11 +749,9 @@ public class RegressionLens extends JFrame {
             if(quadraticRegressionJRadioButton.isSelected()) {
                 s = reg.getQuadraticRegression(ySelected, xSelected, re);
                 String[] coeff = s.split("\\s*,\\s*");
-                System.out.println("Coeffs are" + Arrays.toString(coeff));
                 quadRegConst = Double.parseDouble(coeff[0]);
                 quadRegCoeffX = Double.parseDouble(coeff[1]);
                 quadRegCoeffX2 = Double.parseDouble(coeff[2]);
-    //            System.out.println("\nSlope is " + slope + "\nIntercept is" + intercept);
                 textAreaLinearRegression.setText("Intercept : ");
                 textAreaLinearRegression.append(coeff[0]);
                 textAreaLinearRegression.append("\nX Coeff : ");
@@ -803,7 +780,6 @@ public class RegressionLens extends JFrame {
             if(e.getModifiers() == InputEvent.BUTTON1_MASK){
                 markerStart = getPosition(e);
                 markerStartY = getPositionY(e);
-                System.out.println(markerStart + " " + markerStartY);
                 textAreaRectangleCord.setText("Marker Start \nx = ");
                 textAreaRectangleCord.append(Double.toString(markerStart));
                 textAreaRectangleCord.append("\ny = ");
@@ -824,9 +800,7 @@ public class RegressionLens extends JFrame {
                 markerStartY = temp;
             }
         
-        
         }
-        
        
     }
     //END OF MOUSE MARKER

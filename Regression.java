@@ -96,7 +96,7 @@ public class Regression {
         
         
         REXP mod = rEngine.eval("mod = lm(" + javaVectorX + "~" + javaVectorY + "+" + javaVectorY2 + ")");
-        REXP Rcoeff = rEngine.eval("print(mod$coefficients)");
+        //REXP Rcoeff = rEngine.eval("print(mod$coefficients)");
         REXP coeff = new REXP(34, rEngine.eval("mod$coefficients"));
         //rEngine.eval("mod$coefficients");
         String S = coeff.getContent().toString();

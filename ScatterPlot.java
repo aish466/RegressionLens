@@ -39,8 +39,6 @@ import org.jfree.data.xy.*;
 /**
  * Scatter Plot class
  *
- * @author Lin Shao
- *
  */
 public class ScatterPlot extends JPanel implements ChartMouseListener, MouseListener, AxisChangeListener {
 
@@ -66,29 +64,8 @@ public class ScatterPlot extends JPanel implements ChartMouseListener, MouseList
      * @param y the second dimension.
      * @param data dataset.
      */
-    public ScatterPlot(final String title, String x, String y, double[][] data, String destPath) {
-
-        super();
-        xAxisName = x;
-        yAxisName = y;
-        path = destPath;
-
-        this.dataset = setData(data);
-        //addData();
-        chart = createChart(0);
-        storeScatterPlot(chart, title);
-        chartPanel = new ChartPanel(chart);
-        chartPanel.setPreferredSize(new Dimension(250, 125));
-        chartPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-        chartPanel.setDomainZoomable(false);
-        chartPanel.setRangeZoomable(false);
-        chartPanel.setName(title);
-        chartPanel.addMouseListener(this);
-
-        setLayout(new BorderLayout());
-        this.add(chartPanel, BorderLayout.NORTH);
-    }
-
+     
+    //DISPLAYING A NORMAL SCATTERPLOT
     public ScatterPlot(final String title, String x, String y, ArrayList<Double> xData, ArrayList<Double> yData, String destPath) {
 
         super();
@@ -99,7 +76,6 @@ public class ScatterPlot extends JPanel implements ChartMouseListener, MouseList
         this.dataset = setData(xData, yData);
         this.xData = xData;
         this.yData = yData;
-//        addData();
         chart = createChart(0);
         
         XYPlot plot = (XYPlot) chart.getPlot();
@@ -111,12 +87,6 @@ public class ScatterPlot extends JPanel implements ChartMouseListener, MouseList
         yAxis.setLowerBound(getMinValue(yData));
         yAxis.setUpperBound(getMaxValue(yData));
         
-//        ArrayList<Point> myList = new ArrayList<Point>();
-//        
-//        myList.add(new Point(12, 15));
-//        
-//        myList.get(0).getX();
-//        
 //        storeScatterPlot(chart, title);
         chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new Dimension(600, 400));
@@ -124,18 +94,7 @@ public class ScatterPlot extends JPanel implements ChartMouseListener, MouseList
         chartPanel.setDomainZoomable(false);
         chartPanel.setRangeZoomable(false);
         chartPanel.setName(title);
-        chartPanel.addMouseListener(this);
-        
-//        this works
-//        JPanel panel = new JPanel();
-//        panel.add(chartPanel);
-//        add(panel);
-        
-        
-//          setLayout(new BorderLayout());
-//          this.add(chartPanel, BorderLayout.CENTER);
-//        add(new JLabel("Hello"), BorderLayout.NORTH);
-        
+        chartPanel.addMouseListener(this);        
     }
     
     //LINE WITH SCATTERPLOT
@@ -175,13 +134,7 @@ public class ScatterPlot extends JPanel implements ChartMouseListener, MouseList
         xAxis.setUpperBound(getMaxValue(xData));
         yAxis.setLowerBound(getMinValue(yData));
         yAxis.setUpperBound(getMaxValue(yData));
-        
-//        ArrayList<Point> myList = new ArrayList<Point>();
-//        
-//        myList.add(new Point(12, 15));
-//        
-//        myList.get(0).getX();
-//        
+                
 //        storeScatterPlot(chart, title);
         chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new Dimension(600, 400));
@@ -189,18 +142,7 @@ public class ScatterPlot extends JPanel implements ChartMouseListener, MouseList
         chartPanel.setDomainZoomable(false);
         chartPanel.setRangeZoomable(false);
         chartPanel.setName(title);
-        chartPanel.addMouseListener(this);
-        
-//        this works
-//        JPanel panel = new JPanel();
-//        panel.add(chartPanel);
-//        add(panel);
-        
-        
-//          setLayout(new BorderLayout());
-//          this.add(chartPanel, BorderLayout.CENTER);
-//        add(new JLabel("Hello"), BorderLayout.NORTH);
-        
+        chartPanel.addMouseListener(this);        
     }
         
         //QUADRATIC CURVE WITH SCATTERPLOT
@@ -240,7 +182,7 @@ public class ScatterPlot extends JPanel implements ChartMouseListener, MouseList
          // Saved Regressions
          int numberOfSavedRegressions = rectCoord.size() / 5;
          savedRegressions(rectCoord, regLineCoord, numberOfSavedRegressions);
-//        addData();
+
         chart = createChart(numberOfSavedRegressions);
         
         XYPlot plot = (XYPlot) chart.getPlot();
@@ -252,12 +194,6 @@ public class ScatterPlot extends JPanel implements ChartMouseListener, MouseList
         yAxis.setLowerBound(getMinValue(yData));
         yAxis.setUpperBound(getMaxValue(yData));
         
-//        ArrayList<Point> myList = new ArrayList<Point>();
-//        
-//        myList.add(new Point(12, 15));
-//        
-//        myList.get(0).getX();
-//        
 //        storeScatterPlot(chart, title);
         chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new Dimension(600, 400));
@@ -265,18 +201,7 @@ public class ScatterPlot extends JPanel implements ChartMouseListener, MouseList
         chartPanel.setDomainZoomable(false);
         chartPanel.setRangeZoomable(false);
         chartPanel.setName(title);
-        chartPanel.addMouseListener(this);
-        
-//        this works
-//        JPanel panel = new JPanel();
-//        panel.add(chartPanel);
-//        add(panel);
-        
-        
-//          setLayout(new BorderLayout());
-//          this.add(chartPanel, BorderLayout.CENTER);
-//        add(new JLabel("Hello"), BorderLayout.NORTH);
-        
+        chartPanel.addMouseListener(this);        
     }
         
     //SAVE A REGRESSION WITH SCATTERPLOT
@@ -307,7 +232,6 @@ public class ScatterPlot extends JPanel implements ChartMouseListener, MouseList
          int numberOfSavedRegressions = rectCoord.size() / 5;
          savedRegressions(rectCoord, regLineCoord, numberOfSavedRegressions);
          
-//        addData();
         chart = createChart(numberOfSavedRegressions);
         
         XYPlot plot = (XYPlot) chart.getPlot();
@@ -318,13 +242,7 @@ public class ScatterPlot extends JPanel implements ChartMouseListener, MouseList
         xAxis.setUpperBound(getMaxValue(xData));
         yAxis.setLowerBound(getMinValue(yData));
         yAxis.setUpperBound(getMaxValue(yData));
-        
-//        ArrayList<Point> myList = new ArrayList<Point>();
-//        
-//        myList.add(new Point(12, 15));
-//        
-//        myList.get(0).getX();
-//        
+                
 //        storeScatterPlot(chart, title);
         chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new Dimension(600, 400));
@@ -333,19 +251,9 @@ public class ScatterPlot extends JPanel implements ChartMouseListener, MouseList
         chartPanel.setRangeZoomable(false);
         chartPanel.setName(title);
         chartPanel.addMouseListener(this);
-        
-//        this works
-//        JPanel panel = new JPanel();
-//        panel.add(chartPanel);
-//        add(panel);
-        
-        
-//          setLayout(new BorderLayout());
-//          this.add(chartPanel, BorderLayout.CENTER);
-//        add(new JLabel("Hello"), BorderLayout.NORTH);
-        
     }
         
+    // adding line and polynomial regression series
     public void savedRegressions(ArrayList<Double> rectCoord, ArrayList<Double> regLineCoord, int numberOfSavedRegressions){
         for(int i = 0; i < numberOfSavedRegressions; i++){
              XYSeries rectData = new XYSeries("Rectangle Plot" + i, false);
@@ -420,7 +328,7 @@ public class ScatterPlot extends JPanel implements ChartMouseListener, MouseList
         
         storeScatterPlot(chart, title);
         chartPanel = new ChartPanel(chart);
-//        chartPanel.setSize(250, 125);
+//        chartPanel.setSize(250, 125)
         chartPanel.setPreferredSize(new Dimension(180, 100));
         chartPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         chartPanel.setDomainZoomable(false);
@@ -509,7 +417,6 @@ public class ScatterPlot extends JPanel implements ChartMouseListener, MouseList
     }
     
     public void getPointsSelected(ArrayList<Double> xSelected, ArrayList<Double> ySelected, Double markerStart, Double markerStartY, Double markerEnd, Double markerEndY, JTextArea textAreaPoints){
-            System.out.println("In get points!!!!!");
             xSelected.clear();
             ySelected.clear();
             for(int i= 0; i < xData.size(); i++){
@@ -608,40 +515,6 @@ public class ScatterPlot extends JPanel implements ChartMouseListener, MouseList
         dataset.addSeries(data);
         return dataset;
     }
-    
-//    public XYSeriesCollection addData() {
-//        
-//        ArrayList<Double> x = new ArrayList<Double>();
-//        x.add(11.38);
-//        x.add(12.56);
-//        x.add(14.3);
-//        
-//        ArrayList<Double> y = new ArrayList<Double>();
-//        y.add(2.38);
-//        y.add(2.56);
-//        y.add(2.39);
-//        
-////        int length = x.size();
-////        if (x.size() != y.size()) {
-////            if (x.size() > y.size()) {
-////                length = y.size();
-////            }
-////        }
-//        
-//        
-//
-//        XYSeries data = new XYSeries("");
-//        for (int i = 0; i < x.size(); i++) {
-//            if (x.get(i) != null && y.get(i) != null) {
-//                final double xTmp = x.get(i);
-//                final double yTmp = y.get(i);
-//                data.add(xTmp, yTmp);
-//            }
-//        }
-//        
-//        this.dataset.addSeries(data);
-//        return this.dataset;
-//    }
 
     /**
      * Stores the Scatter Plot
